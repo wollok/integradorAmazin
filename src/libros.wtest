@@ -1,0 +1,32 @@
+import libros.*
+
+describe "tests" {
+	
+const comedia1 = new Libro(genero = comedia, autor = "nn", titulo="Gran comedia", paginas = 120)
+const cienciaFiccion1 = new Libro(genero = cienciaFiccion, autor = "nn", titulo="Mas ficcion que ciencia", paginas = 240)
+const comediaDramatica1 = new Libro(genero = comediaDramatica, autor = "xx", titulo="Gran comedia dramatica", paginas = 130)
+
+const juan = new Persona(nick = "jony", librosAdquiridos=[comedia1,comediaDramatica1])
+const ana = new Persona(nick = "anita",librosAdquiridos=[cienciaFiccion1])	
+
+test "las comedias dramaticas son inofensivas" {
+	const nombre = juan.nick()
+	const felicidad = juan.felicidad()
+	juan.leer(comediaDramatica1)
+	assert.equals(nombre,juan.nick())
+	assert.equals(felicidad,juan.felicidad())
+}
+
+test "la comedia aumenta la felicidad en 10" {
+	const felicidad = juan.felicidad()
+	juan.leer(comedia1)
+	assert.equals(felicidad+10,juan.felicidad())
+}
+
+test "la ciencia ficcion inverte el nick" {
+	const nombre = ana.nick()
+	ana.leer(cienciaFiccion1)
+	assert.equals(nombre.reverse(),ana.nick())
+}
+
+}
